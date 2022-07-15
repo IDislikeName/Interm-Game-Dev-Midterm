@@ -76,4 +76,12 @@ public class GunEnemy : MonoBehaviour
                 bul.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (!collision.gameObject.GetComponent<PlayerHealth>().immune)
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage();
+        }
+    }
 }

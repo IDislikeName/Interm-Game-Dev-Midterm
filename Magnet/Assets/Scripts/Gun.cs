@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
     public float recoilF;
     public SpriteRenderer sr;
 
-    private bool reloading = false;
+    public bool reloading = false;
 
     public AudioClip shootsound;
     public AudioClip reloadsound;

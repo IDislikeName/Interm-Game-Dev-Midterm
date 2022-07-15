@@ -105,4 +105,12 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         sr.color = Color.white;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if(!collision.gameObject.GetComponent<PlayerHealth>().immune)
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage();
+        }
+    }
 }

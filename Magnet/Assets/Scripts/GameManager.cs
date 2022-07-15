@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     }
     public int maxHealth;
     public int currentHealth;
+    public GameObject Player;
+    public GameObject victory;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,5 +42,9 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(1);
+    }
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -22,6 +22,9 @@ public class SoundManager : MonoBehaviour
     }
 
     public AudioSource aud;
+    public AudioSource bgm;
+    public AudioClip bossmusic;
+    public AudioClip bg1;
     private void Start()
     {
         aud = GetComponent<AudioSource>();
@@ -29,5 +32,10 @@ public class SoundManager : MonoBehaviour
     public void PlayClip(AudioClip ac)
     {
         aud.PlayOneShot(ac);
+    }
+    public void PlayBGM(AudioClip ac)
+    {
+        bgm.clip = ac;
+        bgm.Play();
     }
 }

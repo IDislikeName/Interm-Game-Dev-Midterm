@@ -9,6 +9,7 @@ public class UIstuff : MonoBehaviour
     public PlayerGuns pg;
     public TMP_Text ammoText;
     public Image weaponIMG;
+    public TMP_Text healthText;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class UIstuff : MonoBehaviour
         {
             ammoText.text = "";
         }
+        healthText.text = "HP:" + GameManager.Instance.currentHealth;
         
     }
 }

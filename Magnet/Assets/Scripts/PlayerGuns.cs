@@ -20,7 +20,7 @@ public class PlayerGuns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q)&&!currentWeapon.GetComponent<Gun>().reloading)
         {
             if (guns.Count != 0)
                 ChangeWeapons();

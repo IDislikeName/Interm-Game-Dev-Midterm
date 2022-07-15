@@ -40,7 +40,8 @@ public class Bullet : MonoBehaviour
                     collision.GetComponent<Enemy>().TakeDamage();
                 if (collision.GetComponent<GunEnemy>())
                     collision.GetComponent<GunEnemy>().TakeDamage();
-
+                if (collision.GetComponent<Boss>())
+                    collision.GetComponent<Boss>().TakeDamage();
                 Destroy(gameObject);
             }
         }
@@ -50,7 +51,9 @@ public class Bullet : MonoBehaviour
         }
         if (collision.CompareTag("Player") && enemy)
         {
-
+            if(!collision.GetComponent<PlayerHealth>().immune)
+                collision.GetComponent<PlayerHealth>().TakeDamage();
+            Destroy(gameObject);
         }
     }
 }

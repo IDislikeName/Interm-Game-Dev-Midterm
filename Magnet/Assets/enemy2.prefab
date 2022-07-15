@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7979106534373169080}
   - component: {fileID: 7440711146184254810}
   - component: {fileID: 3509879493332096143}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: enemy2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   maxhp: 7
   currenthp: 0
   destroysound: {fileID: 8300000, guid: db3ee27dd8b368c459ec1f0d0f4f7477, type: 3}
-  detectRange: 20
+  detectRange: 6
   detected: 0
   target: {fileID: 0}
   speed: 2
@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8314069358242047935}
   - component: {fileID: 8314069358242047904}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}

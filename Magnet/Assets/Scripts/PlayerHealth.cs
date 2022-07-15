@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public bool immune = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,18 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         
+    }
+    public void TakeDamage()
+    {
+        StartCoroutine(Damage());
+    }
+    IEnumerator Damage()
+    {
+        GameManager.Instance.currentHealth -= 1;
+        GetComponent<SpriteRenderer>().color = Color.red;
+        immune = true;
+        yield return new WaitForSeconds(0.3f);
+        immune = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
