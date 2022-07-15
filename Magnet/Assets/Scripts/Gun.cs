@@ -19,6 +19,11 @@ public class Gun : MonoBehaviour
     public float currentCD;
     public float recoilF;
     public SpriteRenderer sr;
+
+    private bool reloading = false;
+
+    public AudioClip shootsound;
+    public AudioClip reloadsound;
     // Start is called before the first frame update
     public void Start()
     {
@@ -30,7 +35,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (Input.GetMouseButton(0) && currentCD <= 0 && currentAmmo > 0)
+        if (Input.GetMouseButton(0) && currentCD <= 0 && currentAmmo > 0&&!reloading)
         {
             Shoot();
         }
@@ -53,16 +58,26 @@ public class Gun : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R)||currentAmmo==0)
         {
-            Reload();
+            if(!reloading&&currentAmmo<maxAmmo)
+                Reload();
         }
     }
     public void Shoot()
     {
         currentAmmo--;
         currentCD = shotCD;
+        SoundManager.Instance.PlayClip(shootsound);
         GameObject bullet = Instantiate(projectile);
-        bullet.transform.position = transform.position;
-        bullet.transform.rotation = transform.rotation;
+        if (sr.flipX)
+        {
+            bullet.transform.position = transform.position - transform.right * projOffset;
+            bullet.transform.rotation = transform.rotation;
+        }
+        else
+        {
+            bullet.transform.position = transform.position + transform.right * projOffset;
+            bullet.transform.rotation = transform.rotation;
+        }
         bullet.GetComponent<SpriteRenderer>().flipX = sr.flipX;
         if (sr.flipX)
         {
@@ -75,11 +90,15 @@ public class Gun : MonoBehaviour
     }
     public void Reload()
     {
-        StartCoroutine(Re());
+        if(!reloading)
+            StartCoroutine(Re());
     }
     IEnumerator Re()
     {
+        reloading = true;
+        SoundManager.Instance.PlayClip(reloadsound);
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
+        reloading = false;
     }
 }

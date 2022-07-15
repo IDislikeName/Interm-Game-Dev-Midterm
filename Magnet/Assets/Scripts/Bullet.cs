@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     public float speed;
+    public bool enemy = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +31,26 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!enemy)
+        {
+            
+            if (collision.CompareTag("Enemy"))
+            {
+                if (collision.GetComponent<Enemy>())
+                    collision.GetComponent<Enemy>().TakeDamage();
+                if (collision.GetComponent<GunEnemy>())
+                    collision.GetComponent<GunEnemy>().TakeDamage();
+
+                Destroy(gameObject);
+            }
+        }
         if (collision.CompareTag("Ground"))
         {
             Destroy(gameObject);
+        }
+        if (collision.CompareTag("Player") && enemy)
+        {
+
         }
     }
 }

@@ -18,7 +18,15 @@ public class UIstuff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ammoText.text = pg.currentWeapon.GetComponent<Gun>().currentAmmo +  "/" + pg.currentWeapon.GetComponent<Gun>().maxAmmo;
-        weaponIMG.sprite = pg.currentWeapon.GetComponent<SpriteRenderer>().sprite;
+        if (pg.guns.Count != 0)
+        {
+            ammoText.text = pg.currentWeapon.GetComponent<Gun>().currentAmmo + "/" + pg.currentWeapon.GetComponent<Gun>().maxAmmo;
+            weaponIMG.sprite = pg.currentWeapon.GetComponent<SpriteRenderer>().sprite;
+        }
+        else
+        {
+            ammoText.text = "";
+        }
+        
     }
 }

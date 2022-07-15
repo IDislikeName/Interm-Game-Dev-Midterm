@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerGuns : MonoBehaviour
 {
-    public GameObject[] guns;
+    public List<GameObject> guns;
     public GameObject currentWeapon;
     public int currentindex = 0;
     // Start is called before the first frame update
     void Start()
     {
-        currentWeapon = guns[0];
-        currentindex = 0;
+        if (guns.Count != 0)
+        {
+            currentWeapon = guns[0];
+            currentindex = 0;
+        }
     }
 
     // Update is called once per frame
@@ -19,14 +22,15 @@ public class PlayerGuns : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ChangeWeapons();
+            if (guns.Count != 0)
+                ChangeWeapons();
         }
     }
     public void ChangeWeapons()
     {
         currentWeapon.SetActive(false);
         currentindex++;
-        if (currentindex > guns.Length - 1)
+        if (currentindex > guns.Count - 1)
         {
             currentindex = 0;
         }
